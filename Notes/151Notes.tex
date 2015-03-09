@@ -1,0 +1,256 @@
+%%% Template originaly created by Karol Kozioł (mail@karol-koziol.net) and modified for ShareLaTeX use
+
+\documentclass[a4paper,11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{xcolor}
+
+\usepackage{tgtermes}
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Java,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\usepackage[
+pdftitle={Problem Set No.9}, 
+pdfauthor={James Capuder, Oberlin College},
+colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue,bookmarks=true,
+bookmarksopenlevel=2]{hyperref}
+\usepackage{amsmath,amssymb,amsthm,textcomp}
+\usepackage{enumerate}
+\usepackage{multicol}
+\usepackage{tikz}
+
+\usepackage{geometry}
+\geometry{total={210mm,297mm},
+left=25mm,right=25mm,%
+bindingoffset=0mm, top=20mm,bottom=20mm}
+
+
+\linespread{1.3}
+
+\newcommand{\linia}{\rule{\linewidth}{0.5pt}}
+
+% custom theorems if needed
+\newtheoremstyle{mytheor}
+    {1ex}{1ex}{\normalfont}{0pt}{\scshape}{.}{1ex}
+    {{\thmname{#1 }}{\thmnumber{#2}}{\thmnote{ (#3)}}}
+
+\theoremstyle{mytheor}
+\newtheorem{defi}{Definition}
+
+% my own titles
+\makeatletter
+\renewcommand{\maketitle}{
+\begin{center}
+\vspace{2ex}
+{\huge \textsc{\@title}}
+\vspace{1ex}
+\\
+\linia\\
+\@author \hfill \@date\
+\vspace{4ex}
+\end{center}
+}
+\makeatother
+%%%
+
+% custom footers and headers
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{Notes}
+\cfoot{}
+\rfoot{Page \thepage\ /\ \pageref*{LastPage}}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+%
+
+%%%----------%%%----------%%%----------%%%----------%%%
+
+\begin{document}
+
+\title{CSCI 151 Data Structures - Notes}
+
+\author{James Capuder, Oberlin College}
+
+\date{\today}
+
+\maketitle
+
+\section*{2/4/15 - Intro to Java}
+\subsection*{Why Java?}
+\begin{itemize}
+\item Speed: Compiler vs interpreter 
+\item Platform independence: Java runs on virtual machine, which is the same on every platform (Windows, OSX, Android)
+\item Can send program without source code
+\item Memory Management (Garbage Collection)
+\item Pure object-oriented language
+\item Strongly Typed Language
+\end{itemize}
+\subsection*{Hello World Notes}
+\begin{itemize}
+\item File name has to be identical to main class
+\item Octothorp to comment in python
+\item double forward slash to line comment in Java
+\item Block comment, everything between forwardslash star to star forwardslash, even works across multiple lines
+\item Finally, variation of the block comment, the Javadoc comment, goes from forwardslash doublestar to star forwardslash.
+\end{itemize}
+\subsection*{Whitespace}
+\begin{itemize}
+\item lines end in ';'
+\item BLOCKs are surrounded by \{\}
+\item strips away all whitespace
+\end{itemize}
+\subsection*{Visibility}
+\begin{itemize}
+\item Public, anyone can access
+\item Private, only I can access the variable, along with other variables in the same class
+\item protected
+\end{itemize}
+\subsection*{Variables}
+\begin{itemize}
+\item In Java, variables must be declared with a type and visibility
+\end{itemize}
+
+\subsubsection*{Primitive Types}
+\begin{tabular}{l|cc}
+  Types& Description & \\
+  \hline
+  Byte & 8 bit integer & \\
+  Short& 16 bit integer & \\
+  Int& 32 bit integer & \\
+  Long & 64 bit integer & \\
+  Float& 32 bit floating point number & \\
+  Double& 64 bit floating point number & \\
+  Char& 16 bit unicode character & \\
+  Boolean& true/false &
+\end{tabular}
+
+\subsubsection*{Non-primative types/objects}
+\begin{tabular}{l|cc}
+  Objects& Description & \\
+  \hline
+  String & Character String, double quotes & \\
+  Arrays& TBC &
+\end{tabular}
+
+\subsubsection*{Operators}
+\begin{tabular}{l|cc}
+  Operator& Function & \\
+  \hline
+  = & assignment & \\
+  + & addition &\\
+  - & subtraction &\\
+  * & multiplication &\\
+  / & division &\\
+  \% & modulus division &\\
+  int y = a/b & integer division &\\
+  f=(double) a/b & cast a into a double &
+\end{tabular}
+
+\subsection*{Arrays}
+\begin{itemize}
+\item int a[]; - declares a variable a to be an array of integers
+\item a = newint[4]; - creates an array with 4 slots
+\item int a[] = \{ 2,4,8,16 \}; - does both of the above steps and assigns values to the indices
+\end{itemize}
+
+\subsection*{Logical Operators}
+\begin{tabular}{l|cc}
+  Operator& Function & \\
+  \hline
+  == & equality & \\
+  != & not equal &\\
+  dobule ampersand & and &\\
+  || & or &\\
+   ! & not &\\
+   wedge symbol (shift 6) & exclusive or &
+\end{tabular}
+
+\subsection*{Loops and decision points}
+\subsubsection*{if statements}
+\begin{lstlisting}
+if (<test>) {
+    statement;
+    otherstatement;
+} else {
+    this;
+    that;
+}
+something else;
+\end{lstlisting}
+\subsubsection*{Elif statements}
+\begin{lstlisting}
+if (<test>) {
+    statement;
+} else if (othertest) {
+    otherstatement;
+} else {
+    lastone;
+}
+\end{lstlisting}
+
+\subsubsection*{for loops}
+\begin{lstlisting}
+for ( <init> ; <test> ; <incr> ) {
+    command;
+    cmd2;
+}
+for (int i=0 ; i<10 ; i+=1 ) {
+    command;
+    cmd2;
+}
+public static void main(String[] args) {
+    for (string s: args) {
+        System.out.println(s);
+    }
+}
+\end{lstlisting}
+\subsubsection*{pre and post increment operators}
+\begin{lstlisting}
+int a=3;
+a++; // a is now 4 (post increment)
+++a; // a is now 5 (pre-increment)
+int b, c;
+a = 5;
+b = a++; // a is now 6, b is now 5
+a = 5;
+b = ++a // a is now 6, b is now 6
+
+\end{lstlisting}
+
+
+
+
+
+
+\clearpage
+
+
+
+\end{document}
